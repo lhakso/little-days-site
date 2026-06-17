@@ -378,25 +378,36 @@
   </div>
 
   <script>
-    // Submit to ConvertKit via fetch so we can show an inline thank-you
-    // without bouncing the user to ConvertKit's hosted page.
+    // Submit to Kit and show an inline thank-you without bouncing the user
+    // to Kit's hosted page. Kit's /subscriptions endpoint sends CORS headers
+    // (access-control-allow-origin: *) and returns {"status":"success"},
+    // so we can read the real response and only confirm on genuine success.
     var form = document.querySelector('form');
+    var btn = form.querySelector('button');
     form.addEventListener('submit', function (e) {
-      var action = form.getAttribute('action');
       e.preventDefault();
+      var action = form.getAttribute('action');
       var data = new FormData(form);
-      // no-cors: Kit's /subscriptions endpoint doesn't send CORS headers,
-      // so we can't read the response — but the POST still goes through and
-      // creates the subscriber. We optimistically show the thank-you on send.
-      fetch(action, { method: 'POST', mode: 'no-cors', body: data })
-        .then(function () { document.body.classList.add('submitted'); })
+      btn.disabled = true;
+      btn.textContent = 'Joining…';
+      fetch(action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (json) {
+          if (json && json.status === 'success') {
+            document.body.classList.add('submitted');
+          } else {
+            throw new Error('unexpected response');
+          }
+        })
         .catch(function () {
-          // Hard fallback: normal form post (bounces to Kit's own page).
+          // Hard fallback: normal form post (bounces to Kit's own page,
+          // which still captures the email).
           form.submit();
         });
-      // Show success immediately even if the network is slow; the request
-      // above is already in flight.
-      document.body.classList.add('submitted');
     });
   </script>
 </body>
