@@ -168,10 +168,13 @@
     padding: 6px 0 2px;
   }
   .thanks .check {
-    font-size: 2.4rem;
-    line-height: 1;
-    margin-bottom: 10px;
+    width: 40px; height: 40px;
+    margin: 2px auto 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--green);
+    display: grid; place-items: center;
   }
+  .thanks .check svg { width: 18px; height: 18px; stroke: var(--green); }
   .thanks h2 { margin: 0 0 6px; }
   body.submitted form,
   body.submitted .signup p.note { display: none; }
@@ -179,35 +182,27 @@
 
   /* ---------- FEATURES ---------- */
   .features {
-    margin: 52px 0 8px;
+    margin: 64px 0 8px;
     display: grid;
-    gap: 22px;
+    gap: 0;
   }
   .feature {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
+    padding: 26px 4px;
+    border-top: 1px solid var(--border);
   }
-  .feature .ico {
-    flex: 0 0 auto;
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    display: grid; place-items: center;
-    font-size: 1.4rem;
-    background: #FFF3DC;
-  }
-  .feature .ico.b2 { background: #ECF0F5; }
-  .feature .ico.b3 { background: #E9F2E4; }
+  .feature:last-child { border-bottom: 1px solid var(--border); }
   .feature h3 {
-    margin: 2px 0 3px;
-    font-size: 1.08rem;
+    margin: 0 0 5px;
+    font-size: 1.12rem;
     font-family: "Libre Baskerville", Georgia, serif;
     font-weight: 400;
+    letter-spacing: -0.005em;
   }
   .feature p {
     margin: 0;
     color: var(--muted);
-    font-size: 0.98rem;
+    font-size: 0.99rem;
+    max-width: 34em;
   }
 
   /* ---------- FOOTER ---------- */
@@ -220,14 +215,12 @@
   footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
   .coming {
     display: inline-block;
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--blue-strong);
-    background: #ECF0F5;
-    padding: 6px 14px;
-    border-radius: 999px;
-    margin-bottom: 22px;
+    color: var(--muted);
+    padding: 0;
+    margin-bottom: 24px;
   }
 
   @media (max-width: 480px) {
@@ -282,8 +275,10 @@
       </form>
 
       <div class="thanks">
-        <div class="check">🌻</div>
-        <h2>You're on the list!</h2>
+        <div class="check">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2>You're on the list</h2>
         <p class="note" style="display:block">We'll email you the moment LittleDays is live.</p>
       </div>
 
@@ -298,25 +293,16 @@
 
     <div class="features">
       <div class="feature">
-        <div class="ico">🎙️</div>
-        <div>
-          <h3>Capture in seconds</h3>
-          <p>Tap the mic and just say it. LittleDays writes the memory down for you — no typing, no fuss.</p>
-        </div>
+        <h3>Capture in seconds</h3>
+        <p>Tap once and just say it. LittleDays writes the memory down for you — no typing, no fuss.</p>
       </div>
       <div class="feature">
-        <div class="ico b2">📖</div>
-        <div>
-          <h3>Monthly recaps</h3>
-          <p>Every month becomes a little story you can look back on, with the photos that go with it.</p>
-        </div>
+        <h3>Monthly recaps</h3>
+        <p>Every month becomes a little story to look back on, gathered with the photos that go with it.</p>
       </div>
       <div class="feature">
-        <div class="ico b3">🌻</div>
-        <div>
-          <h3>Real printed keepsakes</h3>
-          <p>Turn a month of memories into a beautiful photobook, printed and shipped to your door.</p>
-        </div>
+        <h3>Printed keepsakes</h3>
+        <p>Turn a month of memories into a beautiful photobook, printed and shipped to your door.</p>
       </div>
     </div>
 
