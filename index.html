@@ -303,21 +303,16 @@
     <p class="shots-caption">Say it once — a month later, it's a book.</p>
 
     <!-- ============================================================
-         SIGNUP FORM
-
-         >>> ONE THING TO DO: paste your ConvertKit form action URL <<<
-         In ConvertKit: Grow → Landing Pages & Forms → create an inline
-         form → Embed → "HTML". Copy the <form action="..."> URL
-         (looks like  https://app.kit.com/forms/1234567/subscriptions )
-         and replace the placeholder in  action="..."  below.
-         The page already works as a teaser until you do this.
+         SIGNUP FORM — wired to Kit form 9575148.
+         Submissions land in the LittleDays Kit account; the JS below
+         posts via fetch and shows the inline "You're on the list" state.
          ============================================================ -->
     <div class="signup">
       <h2>Join the waitlist</h2>
       <p class="note">We're just days away. Join the waitlist to be first in — and get a little something for early families.</p>
 
       <form
-        action="REPLACE_WITH_CONVERTKIT_FORM_ACTION_URL"
+        action="https://app.kit.com/forms/9575148/subscriptions"
         method="post"
         novalidate
       >
@@ -388,25 +383,20 @@
     var form = document.querySelector('form');
     form.addEventListener('submit', function (e) {
       var action = form.getAttribute('action');
-      // If the endpoint hasn't been wired yet, let the form behave normally
-      // (so a quick test still shows the success state).
-      if (action.indexOf('REPLACE_WITH') === 0) {
-        e.preventDefault();
-        document.body.classList.add('submitted');
-        return;
-      }
       e.preventDefault();
       var data = new FormData(form);
-      fetch(action, {
-        method: 'POST',
-        body: data,
-        headers: { accept: 'application/json' }
-      })
+      // no-cors: Kit's /subscriptions endpoint doesn't send CORS headers,
+      // so we can't read the response — but the POST still goes through and
+      // creates the subscriber. We optimistically show the thank-you on send.
+      fetch(action, { method: 'POST', mode: 'no-cors', body: data })
         .then(function () { document.body.classList.add('submitted'); })
         .catch(function () {
-          // Fallback: do a normal form post if fetch is blocked.
+          // Hard fallback: normal form post (bounces to Kit's own page).
           form.submit();
         });
+      // Show success immediately even if the network is slow; the request
+      // above is already in flight.
+      document.body.classList.add('submitted');
     });
   </script>
 </body>
