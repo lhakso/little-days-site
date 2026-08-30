@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LittleDays — A keepsake journal for the little moments</title>
-<meta name="description" content="LittleDays helps parents capture the funny, fleeting little moments with their kids — in a few seconds, by voice or text — and turns them into beautiful monthly recaps and printed photobooks. Join the waitlist." />
+<meta name="description" content="LittleDays helps parents capture the funny, fleeting little moments with their kids — in a few seconds, by voice or text — and turns them into beautiful monthly recaps and printed photobooks. Free on the App Store." />
 
 <!-- Open Graph / social preview (so the bio link looks good when shared) -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://littledaysfamily.com/" />
 <meta property="og:title" content="LittleDays — Keep the little moments" />
-<meta property="og:description" content="Capture the tiny everyday moments with your kids in seconds. Beautiful monthly recaps & printed keepsake books. Join the waitlist." />
+<meta property="og:description" content="Capture the tiny everyday moments with your kids in seconds. Beautiful monthly recaps & printed keepsake books. Now on the App Store." />
 <meta property="og:image" content="https://littledaysfamily.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -94,7 +94,7 @@
     max-width: 30em;
   }
 
-  /* ---------- SIGNUP CARD ---------- */
+  /* ---------- DOWNLOAD CARD ---------- */
   .signup {
     background: var(--card);
     border: 1px solid var(--border);
@@ -102,6 +102,7 @@
     box-shadow: var(--shadow);
     padding: 28px 26px 30px;
     margin: 8px 0 0;
+    text-align: center;
   }
 
   .signup h2 {
@@ -114,75 +115,35 @@
   .signup p.note {
     color: var(--muted);
     font-size: 0.96rem;
-    margin: 0 0 20px;
+    margin: 0 0 22px;
   }
 
-  form {
-    display: flex;
+  .appstore {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  input[type="email"] {
-    flex: 1 1 240px;
-    min-width: 0;
-    font-size: 1.05rem;
-    font-family: inherit;
-    padding: 15px 18px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    background: #FBF6EF;
-    color: var(--ink);
-    outline: none;
-    transition: border-color .15s ease, box-shadow .15s ease;
-  }
-  input[type="email"]:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(135,152,176,0.18);
-  }
-
-  button {
-    flex: 0 0 auto;
     font-family: inherit;
     font-weight: 700;
     font-size: 1.05rem;
     color: #fff;
     background: var(--green);
-    border: none;
-    padding: 15px 26px;
+    text-decoration: none;
+    padding: 15px 28px;
     border-radius: 14px;
-    cursor: pointer;
     transition: transform .08s ease, background .15s ease;
   }
-  button:hover { background: #5f9a4d; }
-  button:active { transform: translateY(1px); }
+  .appstore:hover { background: #5f9a4d; }
+  .appstore:active { transform: translateY(1px); }
+  .appstore svg { width: 20px; height: 20px; fill: #fff; }
 
   .privacy {
     font-size: 0.82rem;
     color: var(--muted);
-    margin: 16px 0 0;
+    margin: 18px 0 0;
     text-align: center;
   }
   .privacy a { color: var(--muted); }
-
-  /* success state (shown after JS submit) */
-  .thanks {
-    display: none;
-    text-align: center;
-    padding: 6px 0 2px;
-  }
-  .thanks .check {
-    width: 40px; height: 40px;
-    margin: 2px auto 14px;
-    border-radius: 50%;
-    border: 1.5px solid var(--green);
-    display: grid; place-items: center;
-  }
-  .thanks .check svg { width: 18px; height: 18px; stroke: var(--green); }
-  .thanks h2 { margin: 0 0 6px; }
-  body.submitted form,
-  body.submitted .signup p.note { display: none; }
-  body.submitted .thanks { display: block; }
 
   /* ---------- PHONE FRAMES ---------- */
   .phone {
@@ -278,7 +239,7 @@
     header { padding-top: 44px; }
     h1 { font-size: 2.05rem; }
     .sub { font-size: 1.08rem; }
-    button { flex: 1 1 100%; }
+    .appstore { display: flex; width: 100%; }
   }
 </style>
 </head>
@@ -287,7 +248,7 @@
 
     <header>
       <img class="logo" src="logo.png" alt="LittleDays" />
-      <div class="coming">Launching very soon · iPhone</div>
+      <div class="coming">Now on the App Store · iPhone</div>
       <h1>Keep the <span class="em">little moments</span> before they slip away.</h1>
       <p class="sub">
         The funny thing they just said. The tiny milestone. LittleDays lets you
@@ -306,46 +267,21 @@
     </div>
     <p class="shots-caption">Say it once — a month later, it's a book.</p>
 
-    <!-- ============================================================
-         SIGNUP FORM — wired to Kit form 9575148.
-         Submissions land in the LittleDays Kit account; the JS below
-         posts via fetch and shows the inline "You're on the list" state.
-         ============================================================ -->
     <div class="signup">
-      <h2>Join the waitlist</h2>
-      <p class="note">We're just days away. Join the waitlist to be first in — and get a little something for early families.</p>
+      <h2>LittleDays is here</h2>
+      <p class="note">Free on the App Store. Start capturing today's little moments in seconds.</p>
 
-      <form
-        action="https://app.kit.com/forms/9575148/subscriptions"
-        method="post"
-        novalidate
-      >
-        <input
-          type="email"
-          name="email_address"
-          placeholder="you@email.com"
-          aria-label="Email address"
-          required
-        />
-        <button type="submit">Notify me</button>
-      </form>
-
-      <div class="thanks">
-        <div class="check">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        </div>
-        <h2>You're on the list</h2>
-        <p class="note" style="display:block">We'll email you the moment LittleDays is live.</p>
-      </div>
+      <a class="appstore" href="https://apps.apple.com/us/app/littledaysfamily/id6761935976">
+        <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        Download on the App Store
+      </a>
 
       <p class="privacy">
-        No spam, ever. Just a single note when we launch.
+        Requires iPhone. Free to start.
         <br />
         <a href="https://lhakso.github.io/little-days-privacy/">Privacy</a>
       </p>
     </div>
-
-    <!-- ============================================================ -->
 
     <div class="features">
       <div class="feature">
@@ -372,47 +308,14 @@
     </div>
 
     <footer>
-      Made with care by Little Days&nbsp;LLC.
+      Made with care by Little Days&nbsp;App&nbsp;LLC.
       <br /><br />
       <a href="https://lhakso.github.io/little-days-privacy/">Privacy</a>
       &nbsp;·&nbsp;
-      <a href="mailto:littledaysllc@gmail.com">Contact</a>
+      <a href="mailto:support@littledaysfamily.com">Contact</a>
     </footer>
 
   </div>
 
-  <script>
-    // Submit to Kit and show an inline thank-you without bouncing the user
-    // to Kit's hosted page. Kit's /subscriptions endpoint sends CORS headers
-    // (access-control-allow-origin: *) and returns {"status":"success"},
-    // so we can read the real response and only confirm on genuine success.
-    var form = document.querySelector('form');
-    var btn = form.querySelector('button');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var action = form.getAttribute('action');
-      var data = new FormData(form);
-      btn.disabled = true;
-      btn.textContent = 'Joining…';
-      fetch(action, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' }
-      })
-        .then(function (r) { return r.json().catch(function () { return {}; }); })
-        .then(function (json) {
-          if (json && json.status === 'success') {
-            document.body.classList.add('submitted');
-          } else {
-            throw new Error('unexpected response');
-          }
-        })
-        .catch(function () {
-          // Hard fallback: normal form post (bounces to Kit's own page,
-          // which still captures the email).
-          form.submit();
-        });
-    });
-  </script>
 </body>
 </html>
